@@ -73,6 +73,9 @@ endif
 $(KNOT_THING_TARGET):  $(KNOT_PROTOCOL_LIB_DIR)
 	#Creating subdirectories
 	$(MKDIR) -p ./$(KNOT_THING_NAME)/src/hal
+	$(MKDIR) -p ./$(KNOT_THING_NAME)/src/sec
+	$(MKDIR) -p ./$(KNOT_THING_NAME)/src/sec/nanoecc
+	$(MKDIR) -p ./$(KNOT_THING_NAME)/src/sec/aes
 	$(MKDIR) -p ./$(KNOT_THING_NAME)/examples
 
 	#Filling with configuration files for Arduino IDE
@@ -99,6 +102,13 @@ $(KNOT_THING_TARGET):  $(KNOT_PROTOCOL_LIB_DIR)
 
 	# Include comm headers and source files
 	$(FIND) ./$(KNOT_HAL_SRC_LIB_DIR)/comm/ \( \( -name '*.c' -or -name '*.h' \) -and ! -name '*serial*' \) -exec $(CP) {} ./$(KNOT_THING_NAME)/src \;
+
+# Include security headers and source files
+	$(FIND) ./$(KNOT_HAL_SRC_LIB_DIR)/sec/ \( \(  -name '*avr*' -or -name '*errors.h' \) -and ! -name '*.S' \) -exec $(CP) {} ./$(KNOT_THING_NAME)/src/sec \;
+
+	# Include security sublibraries headers and source files
+	$(FIND) ./$(KNOT_HAL_SRC_LIB_DIR)/sec/aes/ \( ! -name '*ecc*' \) -exec $(CP) {} ./$(KNOT_THING_NAME)/src/sec/aes \;
+	$(FIND) ./$(KNOT_HAL_SRC_LIB_DIR)/sec/nanoecc/ \(  -name '*ecc*' \) -exec $(CP) {} ./$(KNOT_THING_NAME)/src/sec/nanoecc \;
 
 	# Include nrf24l01 headers and source files
 	$(FIND) ./$(KNOT_HAL_SRC_NRF_LIB_DIR)/ \( \( -name '*.c' -or -name '*.h' \) -and ! -name '*linux*' \) -exec $(CP) {} ./$(KNOT_THING_NAME)/src \;
