@@ -38,12 +38,12 @@ KNOT_PROTOCOL_LIB_REPO = knot-protocol-source
 KNOT_PROTOCOL_LIB_SITE = https://github.com/CESARBR/$(KNOT_PROTOCOL_LIB_REPO).git
 KNOT_PROTOCOL_LIB_DIR = ./$(KNOT_THING_DOWNLOAD_DIR)/$(KNOT_PROTOCOL_LIB_REPO)/src
 
-KNOT_HAL_LIB_VERSION = master
+KNOT_HAL_LIB_VERSION = test_security_v4
 ifdef release
 	KNOT_HAL_LIB_VERSION = $(release)
 endif
 KNOT_HAL_LIB_REPO = knot-hal-source
-KNOT_HAL_LIB_SITE = https://github.com/CESARBR/$(KNOT_HAL_LIB_REPO).git
+KNOT_HAL_LIB_SITE = https://github.com/helmitonjunior/knot-hal-source.git
 KNOT_HAL_HDR_LIB_DIR = ./$(KNOT_THING_DOWNLOAD_DIR)/$(KNOT_HAL_LIB_REPO)/hal
 KNOT_HAL_SRC_LIB_DIR = ./$(KNOT_THING_DOWNLOAD_DIR)/$(KNOT_HAL_LIB_REPO)/src/hal
 
